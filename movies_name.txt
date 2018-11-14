@@ -1144,7 +1144,6 @@ The Juror
 Pinocchio
 Heaven's Gate
 Underworld: Evolution
-Victor Frankenstein
 Finding Forrester
 28 Days
 Unleashed
@@ -1330,7 +1329,6 @@ The Crow
 Baahubali: The Beginning
 The Time Traveler's Wife
 Because I Said So
-The Fast and the Furious
 Frankenweenie
 Serenity
 Against the Ropes
@@ -2047,7 +2045,6 @@ The Bridge of San Luis Rey
 Faster
 Howl's Moving Castle
 Zombieland
-King Kong
 The Waterboy
 Star Wars: Episode V - The Empire Strikes Back
 Bad Boys
@@ -2611,7 +2608,6 @@ Scream: The TV Series
 The Yellow Handkerchief
 The Color Purple
 Tidal Wave
-Ben-Hur
 The Imitation Game
 Private Benjamin
 Coal Miner's Daughter
@@ -3877,7 +3873,6 @@ Easy Money
 Whale Rider
 Paa
 Cargo
-Pan
 High School Musical
 Animal Kingdom
 Love and Death on Long Island
@@ -4750,7 +4745,6 @@ The Other Dream Team
 Johnny Suede
 Finishing the Game: The Search for a New Bruce Lee
 Rubber
-Home
 Kiss the Bride
 The Slaughter Rule
 Monsters
@@ -4819,7 +4813,6 @@ American Ninja 2: The Confrontation
 51 Birch Street
 Revolution
 Rotor DR1
-Halloween
 12 Angry Men
 My Dog Tulip
 It Happened One Night
