@@ -66,7 +66,7 @@ You can use a profiler to answer questions like these:
 
 The **time** command is available in *nix systems.
 ```
-$ **time** python some_program.py
+$ time python some_program.py
 ```
 
 ```
@@ -105,7 +105,7 @@ Duration: 1.0898
 # Python timeit Module
 
 ```
-**import** timeit
+import timeit
 
 print('Plus:', timeit.timeit("['Hello world: ' + str(n) for n in range(100)]", number=1000))
 print('Format:', timeit.timeit("['Hello world: {0}'.format(n) for n in range(100)]",
@@ -295,7 +295,7 @@ pr.disable()
 import pstats
 
 p = pstats.Stats("profile.output")
-p.strip_dirs().sort_stats(" **calls** ").print_stats()
+p.strip_dirs().sort_stats("calls").print_stats()
 ```
 
 ```
