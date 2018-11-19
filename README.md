@@ -1,7 +1,6 @@
-
+# Python Performance Profiling
 
 <p align="center">
-    <h1> Python Performance Profiling </h1><br>
   <img src="https://github.com/akkefa/pycon-python-performance-profiling/blob/master/imgs/1.png?raw=true" alt="Python performance profiling"/>
 </p>
 
@@ -32,12 +31,12 @@ Measure Performance
 
 ### Why Profile?
 
-➔ Why is this program slow?
-➔ Why does it slow my computer to a crawl?
-➔ What is actually happening when this code executes?
-➔ Is there anything I can improve?
-➔ How much memory consumed by program?
-➔ How much time taken by each function execution?
++ Why is this program slow?
++ Why does it slow my computer to a crawl?
++ What is actually happening when this code executes?
++ Is there anything I can improve?
++ How much memory consumed by program?
++ How much time taken by each function execution?
 
 ```
 You can use a profiler to answer questions like these:
@@ -53,13 +52,13 @@ You can use a profiler to answer questions like these:
 
 # Available options for measuring Performance
 
-##### ➔ Command Line
+##### + Command Line
 
-##### ➔ time Module
+##### + time Module
 
-##### ➔ timeit Module
+##### + timeit Module
 
-##### ➔ cProfile Module
+##### + cProfile Module
 
 
 # Command Line
@@ -104,8 +103,6 @@ Duration: 1.0898
 
 # Python timeit Module
 
-Better approach: timeit
-
 ```
 **import** timeit
 
@@ -115,58 +112,56 @@ number=1000))
 print('Percent:', timeit.timeit("['Hello world: %s' % n for n in range(100)]", number=1000))
 ```
 
++ Easy to use
++ Simple to understand
++ Measure execution time of small code snippets
++ Simple code only
++ Not very deterministic
++ Have to manually create runnable code snippets
++ Manual analysis
 
-```
-➔ Easy to use
-➔ Simple to understand
-➔ Measure execution time of small code snippets
-```
-```
-PROS
-```
-➔ Simple code only
-➔ Not very deterministic
-➔ Have to manually create runnable code snippets
-➔ Manual analysis
 
-```
-CONS
-```
-
-##### cProfile Module
+# cProfile Module
 
 Best approach: cProfile
-➔ Python comes with two profiling tools, profile and cProfile.
-➔ Both share the same API, and should act the same.
++ Python comes with two profiling tools, profile and cProfile.
++ Both share the same API, and should act the same.
 
+```
+>>> **import** cProfile
+>>> cProfile.run('2 + 2')
+```
+
+```
 3 function calls in 0.000 seconds
 Ordered by: standard name
 ncalls tottime percall cumtime percall filename:lineno(function)
 1 0.000 0.000 0.000 0.000 <string>:1(<module>)
 1 0.000 0.000 0.000 0.000 {method 'disable' of '_lsprof.Profiler'}
+```
 
->>> **import** cProfile
->>> cProfile.run('2 + 2')
-
-
-##### Running a script with cProfile
-
+### Running a script with cProfile
+```
 # slow.py
 **import** time
 def main():
-sum = 0
-for i in range(10):
-sum += expensive(i // 2)
-return sum
+    sum = 0
+    for i in range(10):
+    sum += expensive(i // 2)
+    return sum
 
 def expensive(t):
-time.sleep(t)
-return t
+    time.sleep(t)
+    return t
 
 if __name__ == '__main__':
-print(main())
+    print(main())
+```
 
-
+```
+python -m cProfile slow.py
+```
+```
 25 function calls in 20.030 seconds
 
 Ordered by: standard name
@@ -179,43 +174,32 @@ ncalls tottime percall cumtime percall filename:lineno(function)
 1 0.000 0.000 0.000 0.000 {print}
 1 0.000 0.000 0.000 0.000 {range}
 10 20.027 2.003 20.027 2.003 {time.sleep}
-
-python -m cProfile slow.py
-
-
-##### cProfile sort by options
-
 ```
-For the number of calls
-```
+
+### cProfile sort by options
+
 **ncalls**
+    Total the number of calls of a function
+   
 
-```
-for the total time spent in the given function
-```
 **tottime**
+     for the total time spent in the given function
 
-```
-is the quotient of tottime divided by ncalls
-```
-**percall**
-
-```
-is the cumulative time spent in this and all subfunctions.
-```
 **cumtime**
+    is the cumulative time spent in this and all sub functions.
 
-```
-is the quotient of cumtime divided by primitive calls
-```
-**percall**
 
 **filename:lineno(function)**
-provides the respective data of each function
+    provides the respective data of each function
 
 
-**cProfile result sorted by tottime**
+### cProfile result sorted by tottime
 
+```
+python -m cProfile -s tottime slow.py
+```
+
+```
 25 function calls in 20.015 seconds
 
 Ordered by: **internal time**
@@ -228,12 +212,15 @@ ncalls **tottime** percall cumtime percall filename:lineno(function)
 1 **0.000** 0.000 20.015 20.015 slow.py:3(<module>)
 1 **0.000** 0.000 20.015 20.015 {built-in method builtins.exec}
 1 **0.000** 0.000 0.000 0.000 {method 'disable' of '_lsprof.Profiler' objects}
+```
 
-python -m cProfile -s tottime slow.py
+### cProfile result sorted by ncalls
 
+```
+python -m cProfile -s ncalls slow.py
+```
 
-**cProfile result sorted by ncalls**
-
+```
 25 function calls in 20.015 seconds
 
 Ordered by: **call count**
@@ -246,29 +233,30 @@ Ordered by: **call count**
 **1** 0.000 0.000 20.020 20.020 slow.py:6(main)
 **1** 0.000 0.000 20.020 20.020 slow.py:3(<module>)
 **1** 0.000 0.000 0.000 0.000 {method 'disable' of '_lsprof.Profiler' objects}
+```
 
-python -m cProfile -s ncalls slow.py
 
+### Easiest way to profile Python code
 
-##### Easiest way to profile Python code
-
+```
 def main():
-sum = 0
-for i in range(10):
-sum += expensive(i // 2)
-return sum
+    sum = 0
+    for i in range(10):
+    sum += expensive(i // 2)
+    return sum
 def expensive(t):
-time.sleep(t)
-return t
-
+    time.sleep(t)
+    return t
+    
 if __name__ == '__main__':
-**pr = cProfile.Profile()
-pr.enable()**
-main()
-**pr.disable()
-pr.print_stats()**
+     pr = cProfile.Profile()
+     pr.enable()
+     main()
+     pr.disable()
+     pr.print_stats()
+```
 
-
+```
 25 function calls in 20.030 seconds
 
 Ordered by: standard name
@@ -281,36 +269,34 @@ ncalls tottime percall cumtime percall filename:lineno(function)
 1 0.000 0.000 0.000 0.000 {print}
 1 0.000 0.000 0.000 0.000 {range}
 10 20.027 2.003 20.027 2.003 {time.sleep}
-
-**cProfile output**
-
+```
 
 ### We can also save the output!
-
+```
 if __name__ == '__main__':
 pr = cProfile.Profile()
 pr.enable()
 main()
 pr.disable()
 **pr.dump_stats("profile.output")**
+```
 
 
-## How do we use the profiling
+# How do we use the profiling information?
 
-## information?
+### pstats Module
 
++ You can use pstats to format the output in various ways.
++ pstats provides sorting options. **( calls, time, cumulative )**
 
-##### pstats Module
-
-➔ You can use pstats to format the output in various ways.
-➔ pstats provides sorting options. **( calls, time, cumulative )**
-
+```
 **import pstats**
 
 p = pstats.Stats("profile.output")
 p.strip_dirs().sort_stats(" **calls** ").print_stats()
+```
 
-
+```
 23 function calls in 20.019 seconds
 
 Ordered by: call count
@@ -320,80 +306,69 @@ ncalls tottime percall cumtime percall filename:lineno(function)
 10 0.000 0.000 20.019 2.002 slow.py:14(expensive)
 1 0.000 0.000 0.000 0.000 {built-in method builtins.print}
 1 0.000 0.000 20.019 20.019 slow.py:7(main)
-
-**pstats module Output**
-
-
-#### An easy way to visualize cProfile
-
-#### results
-
-##### ➔ Snakeviz library
-
-##### ➔ PyCallGraph library
+```
 
 
-##### SNAKEVIZ
+# An easy way to visualize cProfile results
 
+### SNAKEVIZ
 ```
 pip install snakeviz
 ```
-➔ Snakeviz provides two ways to explore profiler data
-➔ Summaries Times
-➔ You can choose the sorting criterion in the output
-table
 
 ```
 $ snakeviz profile.output
 ```
 
-##### SNAKEVIZ Browser View
++ Snakeviz provides two ways to explore profiler data
++ Summaries Times
++ You can choose the sorting criterion in the output table
+
+<p align="center">
+  <img src="https://github.com/akkefa/pycon-python-performance-profiling/blob/master/imgs/4.png?raw=true" alt="Python performance profiling"/>
+</p>
 
 
-##### PyCallGraph
 
+
+
+### PyCallGraph
 ```
 pip install pycallgraph
 ```
-➔ Visual extension of cProfile.
-➔ Understand code structure and Flow
-➔ Summaries Times
-➔ Darker color represent more time spent.
 
 ```
 $ pycallgraph graphviz -- python slow.py
 ```
 
-##### Other profiling options
++ Visual extension of cProfile.
++ Understand code structure and Flow
++ Summaries Times
++ Darker color represent more time spent.
 
-➔ line_profiler will profile the time individual lines of code take
-to execute.
-➔ https://github.com/rkern/line_profiler
+<p align="center">
+  <img src="https://github.com/akkefa/pycon-python-performance-profiling/blob/master/imgs/2.png?raw=true" alt="Python performance profiling"/>
+</p>
 
-```
-Line profiler
-```
-➔ Monitoring memory consumption of a process.
-➔ line-by-line analysis of memory consumption.
-➔ https://pypi.org/project/memory_profiler/
 
-```
-Memory profiler
-```
 
-##### Live Example Interlude
+# Other profiling options
 
+### Line profiler
++ line_profiler will profile the time individual lines of code take to execute.
++ https://github.com/rkern/line_profiler
+
+### Memory profiler
++ Monitoring memory consumption of a process.
++ line-by-line analysis of memory consumption.
++ https://pypi.org/project/memory_profiler/
+
+# Live Example Interlude
 ```
 https://github.com/akkefa/pycon-python-performance-profiling
 ```
-```
-Profiling Example Code
-```
 
 # Thank you.
-
-## Questions?
-
 ```
 Contact : mrikram1989@gmail.com
 ```
