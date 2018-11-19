@@ -16,6 +16,10 @@ I am **Ikram Ali**
 
 # What is Profiling?
 
+<p align="center">
+  <img src="https://github.com/akkefa/pycon-python-performance-profiling/blob/master/imgs/5.png?raw=true" alt="Python performance profiling"/>
+</p>
+
 ### Profiling Definition?
 
 + Measuring the execution time.
