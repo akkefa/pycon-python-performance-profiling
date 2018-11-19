@@ -362,6 +362,10 @@ $ pycallgraph graphviz -- python slow.py
 + https://pypi.org/project/memory_profiler/
 
 # Live Example
+<p align="center">
+  <img src="https://github.com/akkefa/pycon-python-performance-profiling/blob/master/imgs/3.gif?raw=true" alt="Python performance profiling"/>
+</p>
+
 ```
 https://github.com/akkefa/pycon-python-performance-profiling/profiling-demo.ipynb
 ```
