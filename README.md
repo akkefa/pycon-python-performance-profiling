@@ -1,36 +1,33 @@
 
 
 <p align="center">
-    # Python Performance Profiling <br>
+    <h1> Python Performance Profiling </h1><br>
   <img src="https://github.com/akkefa/pycon-python-performance-profiling/blob/master/imgs/1.png?raw=true" alt="Python performance profiling"/>
 </p>
 
-### HELLO!
+## HELLO!
 
 I am **Ikram Ali**
 
-➔ Data Scientist @ Arbisoft
-➔ Working on Deep learning projects for Kayak
-➔ Github.com/akkefa
-➔ Linkedin.com/in/akkefa
++ Data Scientist @ Arbisoft
++ Working on Deep learning projects for Kayak
++ Github.com/akkefa
++ Linkedin.com/in/akkefa
 
 
-## What is Profiling?
+# What is Profiling?
+
+### Profiling Definition?
+
++ Measuring the execution time.
++ Insight of run time performance of a given piece of code.
++ Frequently used to optimize execution time.
++ Used to analyze other characteristics such as memory consumption.
 
 
-#### Profiling Definition?
+# What is Python Profiling?
 
-➔ Measuring the execution time.
-➔ Insight of run time performance of a given piece of
-code.
-➔ Frequently used to optimize execution time.
-➔ Used to analyze other characteristics such as
-memory consumption.
-
-
-## What is Python Profiling?
-
-# Measure Performance
+Measure Performance
 
 
 ### Why Profile?
@@ -46,22 +43,15 @@ memory consumption.
 You can use a profiler to answer questions like these:
 ```
 
-### Why You should care about Performance
+# Why You should care about Performance
 
-➔ “If You Can’t Measure It, You Can’t Manage It.”
++ “If You Can’t Measure It, You Can’t Manage It.”
 
-➔ Writing efficient code saves money in modern "cloud
-economy" (e.g. you need fewer VM instances).
++ Writing efficient code saves money in modern "cloud economy" (e.g. you need fewer VM instances).
 
-➔ Even if you don't use clouds, a particular problem
-domain can have strict performance requirements
-(e.g. when you have to process a chunk of data in
-time before the next chunk arrives).
++ Even if you don't use clouds, a particular problem domain can have strict performance requirements (e.g. when you have to process a chunk of data in time before the next chunk arrives).
 
-
-## Available options for measuring
-
-## Performance
+# Available options for measuring Performance
 
 ##### ➔ Command Line
 
@@ -72,7 +62,7 @@ time before the next chunk arrives).
 ##### ➔ cProfile Module
 
 
-##### Command Line
+# Command Line
 
 The **time** command is available in *nix systems.
 
@@ -82,73 +72,49 @@ real 0m4.536s
 user 0m3.411s
 sys 0m0.979s
 
++ Easy to use
++  Very limited information
++  Not very deterministic
++  Not available on Windows
 
-##### Command Line
-
-```
-➔ Easy to use
-```
-```
-PROS
-```
-➔ Very limited information
-➔ Not very deterministic
-➔ Not available on Windows
-
-```
-CONS
-```
-
-##### Python time Module
+# Python time Module
 
 ```
 Naive approach: time.time() statements
 ```
+
 ```
+
 import time
 initial_time = time.time()
 time.sleep(1)
 final_time = time.time()
 print('Duration: {}'.format(final_time - initial_time))
 ```
-```
-Duration: 1.
-```
-
-##### Python time Module
 
 ```
-➔ Easy to use
-➔ Simple to understand
-```
-```
-PROS
-```
-➔ Very limited information
-➔ Not very deterministic
-➔ Manual code modification and analysis
-
-```
-CONS
+Duration: 1.0898
 ```
 
-##### Python timeit Module
++ Easy to use
++ Simple to understand
++ Very limited information
++ Not very deterministic
++ Manual code modification and analysis
 
+# Python timeit Module
+
+Better approach: timeit
+
+```
 **import** timeit
 
 print('Plus:', timeit.timeit("['Hello world: ' + str(n) for n in range(100)]", number=1000))
 print('Format:', timeit.timeit("['Hello world: {0}'.format(n) for n in range(100)]",
 number=1000))
 print('Percent:', timeit.timeit("['Hello world: %s' % n for n in range(100)]", number=1000))
+```
 
-Better approach: timeit
-
-Plus: 0.
-Format: 0.
-Percent: 0.
-
-
-##### timeit Module
 
 ```
 ➔ Easy to use
