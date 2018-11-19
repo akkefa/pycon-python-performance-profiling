@@ -25,22 +25,19 @@ I am **Ikram Ali**
 
 
 # What is Python Profiling?
++ Measure Performance
 
-Measure Performance
 
-
-### Why Profile?
-
+# Why Profile?
+```
+You can use a profiler to answer questions like these:
+```
 + Why is this program slow?
 + Why does it slow my computer to a crawl?
 + What is actually happening when this code executes?
 + Is there anything I can improve?
 + How much memory consumed by program?
 + How much time taken by each function execution?
-
-```
-You can use a profiler to answer questions like these:
-```
 
 # Why You should care about Performance
 
@@ -52,24 +49,27 @@ You can use a profiler to answer questions like these:
 
 # Available options for measuring Performance
 
-##### + Command Line
+#### Command Line
 
-##### + time Module
+#### time Module
 
-##### + timeit Module
+####  timeit Module
 
-##### + cProfile Module
+#### cProfile Module
 
 
 # Command Line
 
 The **time** command is available in *nix systems.
-
+```
 $ **time** python some_program.py
+```
 
+```
 real 0m4.536s
 user 0m3.411s
 sys 0m0.979s
+```
 
 + Easy to use
 +  Very limited information
@@ -78,12 +78,9 @@ sys 0m0.979s
 
 # Python time Module
 
-```
-Naive approach: time.time() statements
-```
+time.time() statements
 
 ```
-
 import time
 initial_time = time.time()
 time.sleep(1)
@@ -128,7 +125,7 @@ Best approach: cProfile
 + Both share the same API, and should act the same.
 
 ```
->>> **import** cProfile
+>>> import cProfile
 >>> cProfile.run('2 + 2')
 ```
 
@@ -143,7 +140,7 @@ ncalls tottime percall cumtime percall filename:lineno(function)
 ### Running a script with cProfile
 ```
 # slow.py
-**import** time
+import time
 def main():
     sum = 0
     for i in range(10):
@@ -161,6 +158,7 @@ if __name__ == '__main__':
 ```
 python -m cProfile slow.py
 ```
+
 ```
 25 function calls in 20.030 seconds
 
@@ -176,7 +174,7 @@ ncalls tottime percall cumtime percall filename:lineno(function)
 10 20.027 2.003 20.027 2.003 {time.sleep}
 ```
 
-### cProfile sort by options
+## cProfile sort by options
 
 **ncalls**
     Total the number of calls of a function
@@ -193,7 +191,7 @@ ncalls tottime percall cumtime percall filename:lineno(function)
     provides the respective data of each function
 
 
-### cProfile result sorted by tottime
+## cProfile result sorted by tottime
 
 ```
 python -m cProfile -s tottime slow.py
@@ -290,7 +288,7 @@ pr.disable()
 + pstats provides sorting options. **( calls, time, cumulative )**
 
 ```
-**import pstats**
+import pstats
 
 p = pstats.Stats("profile.output")
 p.strip_dirs().sort_stats(" **calls** ").print_stats()
@@ -311,7 +309,7 @@ ncalls tottime percall cumtime percall filename:lineno(function)
 
 # An easy way to visualize cProfile results
 
-### SNAKEVIZ
+### SNAKEVIZ library
 ```
 pip install snakeviz
 ```
@@ -332,7 +330,7 @@ $ snakeviz profile.output
 
 
 
-### PyCallGraph
+### PyCallGraph library
 ```
 pip install pycallgraph
 ```
@@ -363,13 +361,14 @@ $ pycallgraph graphviz -- python slow.py
 + line-by-line analysis of memory consumption.
 + https://pypi.org/project/memory_profiler/
 
-# Live Example Interlude
+# Live Example
 ```
-https://github.com/akkefa/pycon-python-performance-profiling
+https://github.com/akkefa/pycon-python-performance-profiling/profiling-demo.ipynb
 ```
 
 # Thank you.
 ```
+Linkedin.com/in/akkefa
 Contact : mrikram1989@gmail.com
 ```
 
